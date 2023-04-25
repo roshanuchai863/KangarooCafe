@@ -37,26 +37,7 @@ export function HomeScreen(props) {
         setItemPrice(``)
     }
 
-    // //read data from database
-    // useEffect(() => {
-    //     const readData = async () => {
-    //         const docRef = doc(db, "coffee", "xWrwUXqb9IU25TIRRQ27");
-    //         const docSnap = await getDoc(docRef);
-
-    //         if (docSnap.exists()) {
-    //             setImage(docSnap.data().ImageUrl);
-    //             console.log("iamge location:" + (docSnap.data().imageUrl))
-    //             setItemName(docSnap.data().productTitle);
-    //             setItemDesc(docSnap.data().productDesc);
-    //             setItemPrice(docSnap.data().productPrice);
-
-
-    //             console.log(docSnap.data())
-
-    //         }
-    //     }
-    //     readData();
-    // }, [])
+    
 
     useEffect(() => {
         if (!props.authStatus) {
@@ -66,32 +47,6 @@ export function HomeScreen(props) {
 
     const ListClickHandler = (data) => {
         navigation.navigate("EditItem", data)
-    }
-
-    // const ListItem = (props) => {
-    //     return (
-    //         <View
-    //             style={styles.listItem}
-
-    //         >
-    //             <TouchableOpacity onPress={
-    //                 () => ListClickHandler({ id: props.id, itemName: props.itemName, itemPrice: props.itemPrice, itemDes: props.itemDesc })
-    //             }
-    //             >
-    //                 <Text>
-    //                     {props.itemName}
-    //                 </Text>
-    //             </TouchableOpacity>
-    //             <Image>{props.itemImage}</Image>
-    //             <Text>{props.itemPrice}</Text>
-    //         </View>
-    //     )
-    // }
-
-    const ListItemSeparator = (props) => {
-        return (
-            <View style={styles.separator} ></View>
-        )
     }
 
 
@@ -167,7 +122,7 @@ export function HomeScreen(props) {
                 ItemSeparatorComponent={ListItemSeparator}
             />
 
-            <SignOutButton.SignOutButton text="Sign out" />
+            {/* <SignOutButton.SignOutButton text="Sign out" />
             < TouchableOpacity
                 onPress={() => Additemscreen()}
             >
@@ -183,8 +138,7 @@ export function HomeScreen(props) {
                 <Text>Edit Item</Text>
 
 
-            </TouchableOpacity>
-
+            </TouchableOpacity> */}
 
         </View >
 
