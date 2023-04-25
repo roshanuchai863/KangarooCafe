@@ -28,7 +28,7 @@ export function HomeScreen(props) {
 
     const saveItem = async () => {
         setShowModal(false)
-        const itemObj = { title: itemName, content: item }
+        const itemObj = { title: itemName, content: Item }
         // add item to firebase
         const path = `users/{authStatus.uid}/item`
         const ref = await addDoc(collection(DB, path), itemObj)
@@ -122,7 +122,7 @@ export function HomeScreen(props) {
                 ItemSeparatorComponent={ListItemSeparator}
             />
 
-            {/* <SignOutButton.SignOutButton text="Sign out" />
+             <SignOutButton.SignOutButton text="Sign out" />
             < TouchableOpacity
                 onPress={() => Additemscreen()}
             >
@@ -138,7 +138,7 @@ export function HomeScreen(props) {
                 <Text>Edit Item</Text>
 
 
-            </TouchableOpacity> */}
+            </TouchableOpacity> 
 
         </View >
 
