@@ -56,6 +56,7 @@ export function SignInScreen(props) {
             <View style={styles.inputGroup}>
                 <Text>Email address </Text>
 
+
                 <TextInput
                     style={styles.input}
                     placeholder="you@domain.com "
@@ -65,6 +66,7 @@ export function SignInScreen(props) {
             </View>
             <View style={styles.inputGroup}>
                 <Text>Password</Text>
+
                 <TextInput
                     style={styles.input}
                     placeholder="minimum 8 characters "
@@ -90,6 +92,51 @@ export function SignInScreen(props) {
     )
 }
 
+const styles = StyleSheet.create({
+    page: {
+        marginHorizontal: 60,
+    },
+    title: {
+        fontSize: 20,
+        textAlign: 'center',
+        marginTop: 20,
+    },
+    input: {
+        backgroundColor: "#ffffff",
+        padding: 5,
+        borderWidth: 1,
+        borderColor: "#cccccc",
+    },
+    validInput: {
+        borderColor: "green",
+        borderWidth: 1,
+        backgroundColor: "#ffffff",
+        padding: 5,
+    },
+    inputGroup: {
+        marginVertical: 5,
+    },
+    button: {
+        backgroundColor: "#000000",
+        padding: 10,
+        marginVertical: 10,
+    },
+    buttonText: {
+        color: "#ffffff",
+        textAlign: "center"
+    },
+    buttonDisabled: {
+        backgroundColor: "#666666",
+        padding: 10,
+        marginVertical: 10,
+    },
+    signInLink: {
+        marginVertical: 5,
+    },
+    signInLinkText: {
+        textAlign: "center",
+    }
+})
 const styles = StyleSheet.create({
     page: {
         marginHorizontal: 60,

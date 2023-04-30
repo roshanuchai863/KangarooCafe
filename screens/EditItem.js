@@ -4,7 +4,7 @@ import { getAuth } from "firebase/auth";
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig, db } from '../config/Config';
 import { getStorage, uploadBytesResumable } from "firebase/storage";
-import { Image } from 'react-native-web';
+import { Image } from 'react-native';
 import { ref, onValue } from "firebase/database";
 
 import {
@@ -67,7 +67,7 @@ export function EditScreen(props) {
 
     // update function
     const udpdatename = () => {
-        updateDoc(doc(db, "coffee", "kCbYjEvt8voJfP81iZgJ"), {
+        updateDoc(doc(db, "coffee", "Udl92Hq8ASkUHyQ1P339"), {
 
             productTitle: itemName,
             productDesc: itemDesc,
@@ -77,11 +77,11 @@ export function EditScreen(props) {
         });
 
         console.log("success")
-        
+
     }
 
     const deleteData = () => {
-        deleteDoc(doc(db, "coffee", "kCbYjEvt8voJfP81iZgJ"));
+        deleteDoc(doc(db, "coffee", "Udl92Hq8ASkUHyQ1P339"));
         console.log("deleted Successfully")
         setItemDesc("");
         setItemName("");
@@ -93,10 +93,12 @@ export function EditScreen(props) {
     }
 
 
+
+
     //on openscreen display datainto input field
     useEffect(() => {
         const readData = async () => {
-            const docRef = doc(db, "coffee", "xWrwUXqb9IU25TIRRQ27");
+            const docRef = doc(db, "coffee", "Udl92Hq8ASkUHyQ1P339");
             const docSnap = await getDoc(docRef);
 
             if (docSnap.exists()) {
@@ -180,7 +182,7 @@ export function EditScreen(props) {
             <View style={styles.container}>
 
                 <Button title=" Delete " style={styles.buttonContainer} onPress={deleteData} />
-                < Button title=" add " style={styles.buttonContainer} onPress={udpdatename}
+                < Button title=" Update " style={styles.buttonContainer} onPress={udpdatename}
                 />
 
 

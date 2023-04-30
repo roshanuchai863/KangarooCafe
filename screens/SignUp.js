@@ -1,7 +1,6 @@
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigation } from "@react-navigation/native";
-import { AuthContext } from "../contexts/AuthContext";
 
 export function SignUpScreen(props) {
     const [email, setEmail] = useState("")
@@ -11,7 +10,6 @@ export function SignUpScreen(props) {
     const [validForm, setValidForm] = useState(false)
 
     const navigation = useNavigation()
-    const authStatus = useContext( AuthContext )
 
     useEffect(() => {
         if (email.indexOf('@') > 0) {
@@ -133,4 +131,5 @@ const styles = StyleSheet.create({
         textAlign: "center",
     }
 
+})
 })

@@ -11,5 +11,4 @@ const styles = StyleSheet.create({
     backgroundColor: '#CCCCCC',
     height: 2,
   }
-  
 })

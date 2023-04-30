@@ -146,41 +146,10 @@ export default function App() {
         </Stack.Screen>
         <Stack.Screen name="EditItem">
           {(props) => <EditScreen {...props} handler={EditItemScreenNav} authStatus={auth} />}
-        </Stack.Screen> 
-          <Stack.Screen name="Home" options={{ headerRight: () => <SignOutButton title="signout" /> }}>
+        </Stack.Screen>
+
+        <Stack.Screen name="Home" options={{ headerRight: () => <SignOutButton title="signout" /> }}>
           {(props) => <HomeScreen {...props} authStatus={auth} add={AddData} data={noteData} />}
-
-        </Stack.Screen>
-
-
-        {/* <Stack.Screen name="Signup">
-          {(props) =>
-            <AuthContext.Provider value={auth}>
-              <SignUpScreen {...props} handler={SignUp} />
-            </AuthContext.Provider>
-          }
-        </Stack.Screen>
-
-        <Stack.Screen name="Signin">
-          {(props) =>
-            <AuthContext.Provider value={auth}>
-              <SignInScreen {...props} handler={SignIn} />
-            </AuthContext.Provider>
-          }
-        </Stack.Screen>
-
-        <Stack.Screen name="Home" options={{ headerShown: false }}>
-          {(props) =>
-            <FBAuthContext.Provider value={FBauth} >
-              <DBContext.Provider value={FBdb} >
-                <AuthContext.Provider value={auth}>
-                  <ItemContext.Provider value={itemData}>
-                    <TabScreen {...props} />
-                  </ItemContext.Provider>
-                </AuthContext.Provider>
-              </DBContext.Provider>
-            </FBAuthContext.Provider>
-          }
         </Stack.Screen>
 
         <Stack.Screen name="EditItem">
@@ -195,6 +164,17 @@ export default function App() {
 
        
       </Stack.Navigator>
+
+      {/* <Stack.Screen name="Home" options={{ headerShown: false }}>
+        {(props) =>
+         
+            
+                  <TabScreen {...props} />
+                  <HomeScreen {...props} authStatus={auth} />
+               
+        }
+      </Stack.Screen> */}
+
     </NavigationContainer >
   );
 }

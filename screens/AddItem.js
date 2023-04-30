@@ -3,8 +3,9 @@ import { useNavigation } from "@react-navigation/native";
 import { getAuth } from "firebase/auth";
 import * as ImagePicker from 'expo-image-picker';
 import { firebaseConfig, db, storage } from '../config/Config';
-import { ref, uploadBytes, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { initializeApp } from 'firebase/app';
+
 
 import {
     View,
@@ -15,7 +16,7 @@ import {
     Alert, Image,
 } from 'react-native';
 import { addDoc, collection } from 'firebase/firestore';
-import { SafeAreaView } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 
@@ -35,7 +36,7 @@ export function AddItemScreen(props) {
     const [itemPrice, setItemPrice] = useState("")
     const [imageUrl, setImageUrl] = useState("")
     const [image, setImage] = useState("");
-    const [progressStatus, setprogressStatus] = useState("")
+
 
 
     const pickImage = async () => {
@@ -66,7 +67,7 @@ export function AddItemScreen(props) {
                     resolve(xhr.response);
                 };
                 xhr.onerror = function () {
-                    reject(new TypeError("Item request Failed"));
+                    reject(new TypeError("Network request Failed"));
                 }
                 xhr.responseType = "blob";
                 xhr.open("Get", image, true)
@@ -143,6 +144,8 @@ export function AddItemScreen(props) {
         }
     }, [props.authStatus])
 
+
+
     const cancelHandler = () => {
         navigation.navigate("Home");
     }
@@ -178,67 +181,71 @@ export function AddItemScreen(props) {
 
 
     return (
-        <View style={styles.page}>
-            <View>
 
-                <Button title='Select Image' onPress={pickImage} />
-                {image && <Image source={{ uri: image }} style={{ width: 300, height: 300 }} />}
-                {/* <ImagePreview visible={visible} source={{ uri: 'some-source' }} close={setVisibleToFalse} /> */}
-                {/* <Button title='Upload Image' onPress={uploadImage} /> */}
+        <ScrollView style={styles.page}>
+            <View >
+                <View>
 
-            </View>
+                    <Button title='Select Image' onPress={pickImage} />
+                    {image && <Image source={{ uri: image }} style={{ width: 300, height: 300 }} />}
+                    {/* <ImagePreview visible={visible} source={{ uri: 'some-source' }} close={setVisibleToFalse} /> */}
+                    {/* <Button title='Upload Image' onPress={uploadImage} /> */}
 
-
-
-
-            <View sytle={styles.itemposition}>
-                <Text sytle={styles.titleName}>Add item</Text>
-
-                <TextInput
-                    style={styles.input}
-                    placeholder="item name"
-                    value={itemName}
-                    onChangeText={(setItemNames) => setItemName(setItemNames)}
-                >
-                </TextInput>
-            </View>
+                </View>
 
 
 
 
+                <View sytle={styles.itemposition}>
+                    <Text sytle={styles.titleName}>Add item</Text>
 
-            {/* description */}
-            <View sytle={styles.itemposition}>
-                <Text sytle={styles.titleName}>Item Description</Text>
-                <TextInput
-                    style={styles.descriptionbox}
-                    placeholder="item Description"
-                    value={itemDesc}
-                    onChangeText={(setItemDescs) => setItemDesc(setItemDescs)}
-                >
-                </TextInput>
-            </View>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="item name"
+                        value={itemName}
+                        onChangeText={(setItemNames) => setItemName(setItemNames)}
+                    >
+                    </TextInput>
+                </View>
 
 
-            {/* price */}
-            <View sytle={styles.itemposition}>
-                <Text sytle={styles.titleName}>Items Price</Text>
-                <TextInput
-                    style={styles.input}
-                    placeholder="item Price"
-                    value={itemPrice}
-                    onChangeText={(setItemPrices) => setItemPrice(setItemPrices)}
-                >
-                </TextInput>
 
-            </View>
-            <View style={styles.container}>
-                <Button title=" Cancel " style={styles.buttonContainer} onPress={cancelHandler} />
-                <Button title=" add " style={styles.buttonContainer} onPress={userinputs} />
 
-            </View>
-            {/* // </View> */}
-        </View >
+
+                {/* description */}
+                <View sytle={styles.itemposition}>
+                    <Text sytle={styles.titleName}>Item Description</Text>
+                    <TextInput
+                        style={styles.descriptionbox}
+                        placeholder="item Description"
+                        value={itemDesc}
+                        onChangeText={(setItemDescs) => setItemDesc(setItemDescs)}
+                    >
+                    </TextInput>
+                </View>
+
+
+                {/* price */}
+                <View sytle={styles.itemposition}>
+                    <Text sytle={styles.titleName}>Items Price</Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="item Price"
+                        value={itemPrice}
+                        onChangeText={(setItemPrices) => setItemPrice(setItemPrices)}
+                    >
+                    </TextInput>
+
+                </View>
+                <View style={styles.container}>
+                    <Button title=" Cancel " style={styles.buttonContainer} onPress={cancelHandler} />
+                    <Button title=" add " style={styles.buttonContainer} onPress={userinputs} />
+
+                </View>
+                {/* // </View> */}
+            </View >
+
+        </ScrollView>
     );
 }
 
@@ -248,7 +255,10 @@ const styles = StyleSheet.create({
         marginLeft: 60,
         marginTop: 30,
         alignContent: "center",
+        textAlign: 'center'
+
     },
+
 
     input: {
         backgroundColor: "#ffffff",
@@ -278,6 +288,8 @@ const styles = StyleSheet.create({
 
     },
 
+
+
     itemposition:
     {
         alignContent: 'center',
@@ -296,6 +308,12 @@ const styles = StyleSheet.create({
     },
 
 
+    uploadBtn: {
+        height: 50,
+        marginTop: 20,
+        color: "#cccccc",
+    },
+})
     uploadBtn: {
         height: 50,
         marginTop: 20,
