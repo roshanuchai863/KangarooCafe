@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigation } from "@react-navigation/native";
 import { getAuth } from "firebase/auth";
 import * as ImagePicker from 'expo-image-picker';
 import { firebaseConfig, db, storage } from '../config/Config';
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { ref, uploadBytesResumable, getDownloadURL, getStorage } from "firebase/storage";
 import { initializeApp } from 'firebase/app';
-
+import { AuthContext } from '../contexts/AuthContext'
+import { DBContext } from "../contexts/DBcontext"
 
 import {
     View,
@@ -15,20 +16,20 @@ import {
     Button,
     Alert, Image,
 } from 'react-native';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, getFirestore } from 'firebase/firestore';
 import { ScrollView } from 'react-native-gesture-handler';
 
 
 
 export function AddItemScreen(props) {
     initializeApp(firebaseConfig);
-
-
+    const authStatus = useContext(AuthContext)
+    const DB = useContext(DBContext)
 
     // getting user status and sending image to that specific user id
     const auth = getAuth();
     const user = auth.currentUser;
-
+    const storage = getStorage();
 
     const navigation = useNavigation()
     const [itemName, setItemName] = useState("")
@@ -81,7 +82,7 @@ export function AddItemScreen(props) {
             };
 
             // Upload file and metadata to the object 'images/mountains.jpg'
-            const storageRef = ref(storage, 'images/' + Date.now());
+            const storageRef = ref(storage, `images/${user.uid}/` + Date.now());
             const uploadTask = uploadBytesResumable(storageRef, blobImage, metadata);
 
             // Listen for state changes, errors, and completion of the upload.
@@ -123,7 +124,7 @@ export function AddItemScreen(props) {
                     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                         console.log('File available at', downloadURL);
                         setImageUrl(downloadURL);
-                        console.log("image source:" + imageUrl);
+                        console.log("image source:" + imageUrl + "userid:" + user.uid);
                     });
                 }
             );
@@ -137,12 +138,13 @@ export function AddItemScreen(props) {
     }, [image]);
 
 
+    // useEffect(() => {
+    //     if (!props.authStatus) {
+    //         navigation.reset({ index: 0, routes: [{ name: "Signin" }] })
+    //     }
+    // }, [props.authStatus]);
 
-    useEffect(() => {
-        if (!props.authStatus) {
-            navigation.reset({ index: 0, routes: [{ name: "Signin" }] })
-        }
-    }, [props.authStatus])
+
 
 
 
@@ -158,7 +160,7 @@ export function AddItemScreen(props) {
             alert("Input field is empty")
         }
         else {
-            const docRef = await addDoc(collection(db, "coffee"), {
+            const docRef = await addDoc(collection(db, `users/${user.uid}/coffee/`), {
                 // ImageUrlLocation: storage,
                 ImageUrl: imageUrl,
                 productTitle: itemName,
@@ -308,12 +310,6 @@ const styles = StyleSheet.create({
     },
 
 
-    uploadBtn: {
-        height: 50,
-        marginTop: 20,
-        color: "#cccccc",
-    },
-})
     uploadBtn: {
         height: 50,
         marginTop: 20,

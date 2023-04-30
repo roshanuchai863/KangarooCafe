@@ -10,6 +10,7 @@ export function ProfileScreen () {
       <SignOutButton style={styles.separator}  text = "Sign out" />
     </View>
   )
+  
   const styles = StyleSheet.create({
     text: {
       justifyContent: "bottom center",

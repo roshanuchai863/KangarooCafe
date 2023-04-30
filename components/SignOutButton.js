@@ -3,18 +3,14 @@ import { useContext } from 'react'
 import { FBAuthContext } from '../contexts/FBAuthContext'
 import { signOut, getAuth } from 'firebase/auth'
 
-
-
-
-
 export function SignOutButton(props) {
     const FBauth = useContext(FBAuthContext)
 
 
-    const auth = getAuth();
+    //const auth = getAuth();
 
     const SignOutHandler = () => {
-        signOut(auth).then(() => {
+        signOut(FBauth).then(() => {
             // Sign-out successful.
             Alert.alert("sign Out Successful")
 
