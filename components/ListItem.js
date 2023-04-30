@@ -21,14 +21,6 @@ const styles = StyleSheet.create({
     },
     itemText: {
         fontSize: 18,
-    }
-})
-const styles = StyleSheet.create({
-    item: {
-        padding: 10,
-    },
-    itemText: {
-        fontSize: 18,
     },
    
 

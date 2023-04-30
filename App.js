@@ -152,7 +152,7 @@ export default function App() {
           {(props) => <HomeScreen {...props} authStatus={auth} add={AddData} data={noteData} />}
         </Stack.Screen>
 
-        <Stack.Screen name="EditItem">
+        {/*<Stack.Screen name="EditItem">
           {(props) =>
             <DBContext.Provider value={FBdb}>
               <AuthContext.Provider value={auth}>
