@@ -134,7 +134,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/*<Stack.Screen name="Signup">
+        <Stack.Screen name="Signup">
           {(props) => <SignUpScreen {...props} handler={SignUp} authStatus={auth} />}
         </Stack.Screen>
         <Stack.Screen name="Signin">
@@ -149,10 +149,11 @@ export default function App() {
         </Stack.Screen> 
           <Stack.Screen name="Home" options={{ headerRight: () => <SignOutButton title="signout" /> }}>
           {(props) => <HomeScreen {...props} authStatus={auth} add={AddData} data={noteData} />}
-        </Stack.Screen> */}
+
+        </Stack.Screen>
 
 
-        <Stack.Screen name="Signup">
+        {/* <Stack.Screen name="Signup">
           {(props) =>
             <AuthContext.Provider value={auth}>
               <SignUpScreen {...props} handler={SignUp} />
@@ -190,7 +191,7 @@ export default function App() {
               </AuthContext.Provider>
             </DBContext.Provider>
           }
-        </Stack.Screen>
+        </Stack.Screen> */}
 
        
       </Stack.Navigator>
